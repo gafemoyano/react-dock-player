@@ -30,11 +30,11 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   },
-  "author": "",
+  "author": "@gafemoyano",
   "homepage": "",
   "license": "MIT",
-  "repository": "",
+  "repository": "https://github.com/gafemoyano/react-dock-player",
   "keywords": [
-    "react-component"
+    "react-component-audio-player"
   ]
 }
