@@ -4,7 +4,11 @@
 [![npm package][npm-badge]][npm]
 [![Coveralls][coveralls-badge]][coveralls]
 
-Describe react-dock-player here.
+ReactDockPlayer is a port of the [Changelog's](https://changelog.com/) website
+player to React. The orignal code can be found at https://github.com/thechangelog/changelog.com.
+
+My plan is to extend it to give it at least PlayList support and to be able to override the
+default styles.
 
 [build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
 [build]: https://travis-ci.org/user/repo
