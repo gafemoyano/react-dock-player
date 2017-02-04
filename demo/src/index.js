@@ -1,7 +1,7 @@
 import React from 'react'
 import {render} from 'react-dom'
 import './normalize.css'
-import DockPlayer from '../../src/DockPlayer'
+import DockPlayer from '../../src/'
 
 let Demo = React.createClass({
   render() {

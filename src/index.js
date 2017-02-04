@@ -1,4 +1,5 @@
-import './assets/sass/app.sass'
+// import './assets/sass/app.sass'
+import './assets/player.css'
 import cx from 'classnames'
 import React, { Component, PropTypes } from 'react'
 import AudioWrapper from "./AudioWrapper";
