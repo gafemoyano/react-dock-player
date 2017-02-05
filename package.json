@@ -1,6 +1,6 @@
 {
   "name": "react-dock-player",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "react-dock-player React component",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -8,7 +8,8 @@
     "css",
     "es",
     "lib",
-    "umd"
+    "umd",
+    "img"
   ],
   "scripts": {
     "build": "nwb build-react-component",

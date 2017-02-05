@@ -1,9 +1,9 @@
 // import './assets/sass/app.sass'
-import './assets/player.css'
+import './player.css'
 import cx from 'classnames'
 import React, { Component, PropTypes } from 'react'
 import AudioWrapper from "./AudioWrapper";
-import PodcastArrow from './assets/icons/podcast-arrow.svg'
+import PodcastArrow from '../img/podcast-arrow.svg'
 
 
 const formatTime = secs => {

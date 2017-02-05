@@ -305,11 +305,11 @@
           .podcast-player--is-hidden .podcast-player_nav_button {
             background-color: rgba(18, 25, 33, 0.9); } }
       .podcast-player_nav_button--hide {
-        background-image: url(/icon-down.535d75ad.svg); }
+        background-image: url(../img/icon-down.svg); }
         .podcast-player--is-hidden .podcast-player_nav_button--hide {
-          background-image: url(/icon-up.bfd6e832.svg); }
+          background-image: url(../img/icon-up.svg); }
       .podcast-player_nav_button--close {
-        background-image: url(/icon-close.b384593a.svg); }
+        background-image: url(../img/icon-close.svg); }
   .podcast-player_art {
     display: none;
     height: 5rem;
@@ -458,21 +458,21 @@
             filter: brightness(115%);
     color: #ffffff; }
   .podcast-player-button--play {
-    background-image: url(/play.12dc8071.svg); }
+    background-image: url(../img/play.svg); }
     .podcast-player-button--play.is-paused {
-      background-image: url(/play.12dc8071.svg);
+      background-image: url(../img/play.svg);
       background-size: 18px; }
     .podcast-player-button--play.is-playing {
-      background-image: url(/pause.17b8121a.svg); }
+      background-image: url(../img/pause.svg); }
     .podcast-player-button--play.is-loading {
-      background-image: url(/loading.25f0094c.svg);
+      background-image: url(../img/loading.svg);
       -webkit-animation: spin 1s ease-in-out infinite;
       animation: spin 1s ease-in-out infinite; }
       .podcast-player-button--play.is-loading:after {
         -webkit-animation: spin 1s ease-in-out infinite;
         animation: spin 1s ease-in-out infinite;
         content: "";
-        background: url(/loading-2.9b261a53.svg) center no-repeat;
+        background: url(../img/loading-2.svg) center no-repeat;
         position: absolute;
         top: 0;
         right: 0;
@@ -485,9 +485,9 @@
     width: 2.25rem;
     margin: 0 0.5rem; }
   .podcast-player-button--back15 {
-    background-image: url(/prev-15.1050171a.svg); }
+    background-image: url(../img/prev-15.svg); }
   .podcast-player-button--forward15 {
-    background-image: url(/next-15.e7e7d832.svg); }
+    background-image: url(../img/next-15.svg); }
   .podcast-player-button--episode {
     background-color: transparent;
     -webkit-justify-content: space-around;
