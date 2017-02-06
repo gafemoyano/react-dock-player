@@ -90,18 +90,19 @@ export default class AudioWrapper extends Component {
   }
 
   updateSource() {
-    const isPlaying = this.props.isPlaying
-    const audio = this.audio
+    const isPlaying = this.props.isPlaying;
+    const audio = this.audio;
 
-    audio.pause()
+    audio.pause();
     this.props.onTimeUpdate({
       currentTime: 0,
       trackDuration: audio.duration
-    })
+    });
 
-    audio.load(this.props.source, this.props.onAudioLoaded(audio.duration))
+    // audio.load(this.props.source, this.props.onAudioLoaded(audio.duration))
+    audio.load(this.props.source);
     if (isPlaying) {
-      audio.play()
+      audio.play();
     }
   }
 

@@ -1,3 +1,7 @@
+.flip-horizontal {
+    transform: scaleX(-1);
+    filter: FlipH;
+}
 .player-container {
   display: -webkit-box;
   display: -webkit-flex;

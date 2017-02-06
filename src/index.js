@@ -54,24 +54,27 @@ export default class DockPlayer extends Component {
     currentAudioTitle: "",
     detailsLoaded: false,
   }
+  canPlay() {
+    return this.audio.canPlay()
+  }
   play = () => {
-    this.setState({isPaused: true, isPlaying: true})
+    this.setState({isPaused: true, isPlaying: true});
   }
   pause = () => {
-    this.setState({isPaused: true, isPlaying: false})
+    this.setState({isPaused: true, isPlaying: false});
   }
   handleLoadedData = (duration) => {
-    this.setState({trackDuration: duration})
+    this.setState({trackDuration: duration});
   }
   handlePlayPause = () => {
-    this.state.isPlaying ? this.pause() : this.play()
+    this.state.isPlaying ? this.pause() : this.play();
   }
   handleTimeUpdate = (data) => {
     if(!this.state.isScrubbing){
       this.setState({
         trackDuration: data.trackDuration,
         displayTime: data.currentTime,
-      })
+      });
     }
   }
   handlePlaybackEnd = () => {
@@ -80,7 +83,7 @@ export default class DockPlayer extends Component {
       isPlaying: false,
       trackDuration : 0,
       currentTime: 0,
-    })
+    });
   }
   handleProgress = (data) => {
     if (!this.state.isSeeking) {
@@ -88,48 +91,47 @@ export default class DockPlayer extends Component {
     }
   }
   handleIncrement = (interval) => {
-    this.setState({currentTime: this.state.displayTime + 15})
+    this.setState({currentTime: this.state.displayTime + 15});
   }
   handleDecrement = (interval) => {
-    this.setState({currentTime: this.state.displayTime - 15})
+    this.setState({currentTime: this.state.displayTime - 15});
   }
   handleScrubberMouseDown = event => {
-    this.setState({isScrubbing: true})
+    this.setState({isScrubbing: true});
   }
   handleScrubberMouseUp = (event) => {
-    const newTime = event.target.value > 0 ? parseInt(event.target.value, 10) : 0
+    const newTime = event.target.value > 0 ? parseInt(event.target.value, 10) : 0;
     this.setState({
       isScrubbing: false,
       currentTime: newTime,
-    })
+    });
   }
   handleScrubberChange = (event) => {
-    const seekedTime = event.target.value > 0 ? parseInt(event.target.value, 10) : 0
+    const seekedTime = event.target.value > 0 ? parseInt(event.target.value, 10) : 0;
     this.setState({
       displayTime: seekedTime,
-    })
+    });
   }
 
   close = () => {
-    this.pause()
-    this.setState({isActive: false})
+    this.pause();
+    this.setState({isActive: false});
   }
   hide() {
     this.setState({
       isHidden: true,
       isPlaying: false,
       isPaused: true,
-    })
+    });
   }
   show() {
     this.setState({
       isActive:true,
       isHidden: false,
-    })
+    });
   }
   togglePlayer = () => {
-    console.log(this.state.isHidden)
-    this.state.isHidden ? this.show() : this.hide()
+    this.state.isHidden ? this.show() : this.hide();
   }
   render () {
     const playerClasses = cx(
@@ -137,7 +139,7 @@ export default class DockPlayer extends Component {
       'js-player',
       {'podcast-player--is-active': this.state.isActive},
       {'podcast-player--is-hidden': this.state.isHidden},
-    )
+    );
     return (
       <div className="player-container">
         <AudioWrapper
@@ -187,7 +189,7 @@ export default class DockPlayer extends Component {
           </figure>
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -212,12 +214,12 @@ PlayerNav.propTypes = {
   close: PropTypes.func.isRequired,
 }
 
-const PlayerDetails = ({playerTitle, audioTitle}) => {
+const PlayerDetails = ({title, audioTitle}) => {
   return (
     <div className="podcast-player_details">
       <div className="podcast-player_details_title">
         <span className="js-player-now-playing">
-          {playerTitle}
+          {title}
         </span>
         <figcaption className="js-player-title">
           {audioTitle}
