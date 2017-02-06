@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import PlayIcon from '../public/icon-play.svg';
+import './play-button.css'
 
 const styles = {
  backgroundImage: `url('${PlayIcon}')`
