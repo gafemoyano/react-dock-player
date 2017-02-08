@@ -1,26 +1,12 @@
-// import './assets/sass/app.sass'
-import './player.css'
+import './assets/sass/app.sass'
+// import './player.css'
 import cx from 'classnames'
 import React, { Component, PropTypes } from 'react'
 import AudioWrapper from "./AudioWrapper";
-import PodcastArrow from '../img/podcast-arrow.svg'
-
-
-const formatTime = secs => {
-    let hours = Math.floor(secs / 3600) || 0;
-    let minutes = Math.floor(secs / 60) || 0;
-    let seconds = (secs - minutes * 60) || 0;
-    let formatted = "";
-
-    if (hours > 0) {
-      minutes = (minutes - hours * 60) || 0;
-      formatted += `${hours}:${(minutes < 10 ? "0" : "")}`;
-    }
-
-    formatted += `${minutes}:${(seconds < 10 ? "0" : "")}${seconds}`;
-
-    return formatted;
-}
+import PlayerNav from './PlayerNav';
+import PlayerDetails from './PlayerDetails';
+import PlayerButtons from './PlayerButtons';
+import PlayerSlider from './PlayerSlider';
 
 export default class DockPlayer extends Component {
   static propTypes = {
@@ -193,106 +179,6 @@ export default class DockPlayer extends Component {
   }
 }
 
-const PlayerNav = ({togglePlayer, close}) => {
-  return(
-    <nav className="podcast-player_nav">
-      <button
-        className="podcast-player_nav_button podcast-player_nav_button--hide js-player-hide"
-        title="Toggle Player"
-        onClick={togglePlayer}>
-        </button>
-      <button
-        className="podcast-player_nav_button podcast-player_nav_button--close js-player-close"
-        title="Close Player"
-        onClick={close}>
-      </button>
-    </nav>
-  )
-}
-PlayerNav.propTypes = {
-  togglePlayer: PropTypes.func.isRequired,
-  close: PropTypes.func.isRequired,
-}
-
-const PlayerDetails = ({title, audioTitle}) => {
-  return (
-    <div className="podcast-player_details">
-      <div className="podcast-player_details_title">
-        <span className="js-player-now-playing">
-          {title}
-        </span>
-        <figcaption className="js-player-title">
-          {audioTitle}
-        </figcaption>
-      </div>
-    </div>
-  )
-}
-PlayerDetails.propTypes = {
-  playerTitle: PropTypes.string,
-  audioTitle: PropTypes.string,
-}
-
-const PlayerButtons = ({
-  isPaused,
-  isPlaying,
-  isLoading,
-  onPlayPause,
-  onIncrement,
-  onDecrement,
-}) => {
-  const playButtonClasses = cx(
-    'podcast-player-button',
-    'podcast-player-button--play',
-    'js-player-play-button',
-    {'is-paused': isPaused},
-    {'is-playing': isPlaying},
-    {'is-loading': isLoading},
-  )
-  return (
-    <div className="podcast-player_buttons">
-      <button
-        className="podcast-player-button podcast-player-button--episode js-player-prev-button"
-        title="Listen to the previous episode">
-        <span
-          className="js-player-prev-number">
-        </span>
-        <img src={PodcastArrow} alt="Previous episode"/>
-      </button>
-      <button
-        className="podcast-player-button podcast-player-button--back15 js-player-back-button"
-        title="Seek back 15 seconds"
-        onClick={onDecrement.bind(15)}>
-      </button>
-
-      <button
-        className={playButtonClasses}
-        onClick={onPlayPause.bind(15)}>
-      </button>
-
-      <button
-        className="podcast-player-button podcast-player-button--forward15 js-player-forward-button"
-        title="Seek forward 15 seconds"
-        onClick={onIncrement}>
-      </button>
-      <button className="podcast-player-button podcast-player-button--episode js-player-next-button" title="Listen to the next episode">
-        <img
-          className="flip-horizontal"
-          src={PodcastArrow}
-          alt="Next episode"
-        />
-          <span className="js-player-next-number"></span>
-      </button>
-    </div>
-  )
-}
-
-PlayerButtons.propTypes = {
-  isPaused: PropTypes.bool.isRequired,
-  isPlaying: PropTypes.bool.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  onPlayPause: PropTypes.func.isRequired,
-}
 
 const PlayerArt = ({source}) => (
   <img
@@ -303,59 +189,4 @@ const PlayerArt = ({source}) => (
 
 PlayerArt.propTypes = {
   source: PropTypes.string,
-}
-
-const PlayerSlider = ({
-  trackDuration,
-  currentTime,
-  title,
-  audioTitle,
-  onScrubberChange,
-  onMouseDown,
-  onMouseUp,
-}) => {
-
-  const roundedCurrentTime = Math.round(currentTime || 0)
-  const percentComplete = roundedCurrentTime / trackDuration * 100
-  const formattedCurrentTime = formatTime(currentTime | 0)
-  const formattedDuration = formatTime(trackDuration| 0)
-  return (
-    <form className="podcast-player_slider">
-      <div className="range-slider">
-        <span className="range-slider_above">
-          <span className="js-player-now-playing">{title}</span>
-        </span>
-        <div className="range-slider_range_wrap">
-          <input
-            className="range-slider_range js-player-scrubber"
-            type="range"
-            value={roundedCurrentTime}
-            onChange={onScrubberChange}
-            onMouseDown={onMouseDown}
-            onMouseUp={onMouseUp}
-            min="0"
-            max={trackDuration}/>
-          <div
-            className="range-slider_range_track js-player-track"
-            style={{width: `${percentComplete}%`}}
-          >
-          </div>
-        </div>
-        <span className="range-slider_below">
-          <span className="js-player-title">{audioTitle}</span>
-          <output>
-            <b className="js-player-current">{formattedCurrentTime}</b> /
-            <span className="js-player-duration"> {formattedDuration}</span>
-          </output>
-        </span>
-      </div>
-    </form>
-  )
-}
-PlayerSlider.propTypes = {
-  trackDuration: PropTypes.number.isRequired,
-  currentTime: PropTypes.number.isRequired,
-  onScrubberChange: PropTypes.func.isRequired,
-  onMouseDown: PropTypes.func.isRequired,
-  onMouseUp: PropTypes.func.isRequired,
 }
