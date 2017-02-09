@@ -1,4 +1,4 @@
-import './assets/sass/app.sass';
+// import './assets/sass/app.sass';
 import cx from 'classnames';
 import styled, { css } from 'styled-components';
 import React, { Component, PropTypes } from 'react';
@@ -7,9 +7,13 @@ import PlayerNav from './PlayerNav';
 import PlayerDetails from './PlayerDetails';
 import PlayerButtons from './PlayerButtons';
 import PlayerSlider from './PlayerSlider';
-import { tablet, white } from './style-variables';
+import { tablet, white, black } from './style-variables';
 const PlayerContainer = styled.div`
   display: flex;
+  font-size: 14px;
+  font-family: 'Sana Sans', Arial, sans-serif;
+  color: ${black};
+
   & *{
     box-sizing: border-box;
    }
@@ -62,6 +66,25 @@ const Player = styled.figure`
     transform: translateY(100%) scale(1.0001);
   `}
 `;
+
+const PlayerArt = styled.img`
+  display: none;
+  height: 5rem;
+  width: 5rem;
+
+  @media (min-width: 415px) {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+  }
+
+  @media (min-width: ${tablet}px) {
+    position: relative;
+  }
+`;
+
 export default class DockPlayer extends Component {
   static propTypes = {
     audioTitle: PropTypes.string,
@@ -210,7 +233,7 @@ export default class DockPlayer extends Component {
             togglePlayer={this.togglePlayer}
             close={this.close}
           />
-          <PlayerArt source={this.props.artUrl} />
+          <PlayerArt role="presentation" src={this.props.artUrl} />
           <PlayerDetails
             title={this.props.playerTitle}
             audioTitle={this.props.audioTitle}
@@ -237,15 +260,3 @@ export default class DockPlayer extends Component {
     );
   }
 }
-
-const PlayerArt = ({ source }) => (
-  <img
-    className="podcast-player_art js-player-art"
-    role="presentation"
-    src={source}
-  />
-);
-
-PlayerArt.propTypes = {
-  source: PropTypes.string,
-};
