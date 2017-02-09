@@ -1,7 +1,7 @@
 {
   "name": "react-dock-player",
   "version": "0.0.6",
-  "description": "react-dock-player React component",
+  "description": "A react audio player ported from The Changelog's website. Best suited for blogs, can probably be used for anything.",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -28,11 +28,14 @@
   },
   "devDependencies": {
     "babel-jest": "^18.0.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.22.0",
     "jest": "^18.1.0",
     "nwb": "0.15.x",
     "nwb-sass": "^0.7.0",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "react-test-renderer": "^15.4.2"
   },
   "eslintConfig": {
     "extends": "react-app"
