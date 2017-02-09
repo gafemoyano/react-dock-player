@@ -1,6 +1,6 @@
 {
   "name": "react-dock-player",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A react audio player ported from The Changelog's website. Best suited for blogs, can probably be used for anything.",
   "main": "lib/index.js",
   "module": "es/index.js",
