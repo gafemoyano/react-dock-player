@@ -15,7 +15,10 @@ const PlayButton = ({onClick}) => {
           role="button"
           title="Play Song"
           style={styles}
-          onClick={onClick}>Play</a>
+          onClick={(e) => {
+            e.preventDefault();
+            onClick("next audio", "next url");
+          }}>Play</a>
       </div>
   );
 };

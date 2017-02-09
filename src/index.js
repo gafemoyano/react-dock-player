@@ -8,6 +8,7 @@ import PlayerDetails from './PlayerDetails';
 import PlayerButtons from './PlayerButtons';
 import PlayerSlider from './PlayerSlider';
 import { tablet, white, black } from './style-variables';
+
 const PlayerContainer = styled.div`
   display: flex;
   font-size: 14px;
@@ -95,17 +96,14 @@ export default class DockPlayer extends Component {
     nextAudioTitle: PropTypes.string,
     prevAudioUrl: PropTypes.string,
     prevAudioTitle: PropTypes.string,
+    loadAudio: PropTypes.func.isRequired,
   };
-  static defaultProps = {
-    audioTitle: 'Audio Title',
-    playerTitle: 'React Dock Player',
-  };
+
   state = {
     audioLoaded: false,
     isActive: true,
     isHidden: false,
     isPaused: true,
-    Art: PropTypes.string,
     isPlaying: false,
     isMuted: false,
     isLoading: false,
@@ -115,14 +113,19 @@ export default class DockPlayer extends Component {
     trackDuration: 0,
     currentTime: 0,
     displayTime: 0,
-    currentAudioTitle: '',
-    detailsLoaded: false,
   };
+
   canPlay() {
     return this.audio.canPlay();
   }
+  hasNext() {
+    return this.props.nextAudioTitle && this.props.nextAudioUrl;
+  }
+  hasPrev() {
+    return this.props.prevAudioTitle && this.props.prevAudioUrl;
+  }
   play = () => {
-    this.setState({ isPaused: true, isPlaying: true });
+    this.setState({ isPaused: false, isPlaying: true });
   };
   pause = () => {
     this.setState({ isPaused: true, isPlaying: false });
@@ -202,12 +205,8 @@ export default class DockPlayer extends Component {
     this.state.isHidden ? this.show() : this.hide();
   };
   render() {
-    const playerClasses = cx(
-      'podcast-player',
-      'js-player',
-      { 'podcast-player--is-active': this.state.isActive },
-      { 'podcast-player--is-hidden': this.state.isHidden },
-    );
+    const nextPost = this.hasNext() && this.state.nextAudioTitle;
+    const prevPost = this.hasPrev() && this.state.prevAudioTitle;
     return (
       <PlayerContainer>
         <AudioWrapper
@@ -242,9 +241,12 @@ export default class DockPlayer extends Component {
             isPaused={this.state.isPaused}
             isPlaying={this.state.isPlaying}
             isLoading={this.state.isLoading}
+            prevPost={prevPost}
+            nextPost={nextPost}
             onPlayPause={this.handlePlayPause}
             onIncrement={this.handleIncrement}
             onDecrement={this.handleDecrement}
+            onLoadAudio={this.props.loadAudio}
           />
           <PlayerSlider
             trackDuration={this.state.trackDuration}

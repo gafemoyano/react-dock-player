@@ -112,19 +112,18 @@ const PlayerButtons = (
     onPlayPause,
     onIncrement,
     onDecrement,
+    onLoadAudio,
   },
 ) => {
-  const playButtonClasses = cx(
-    'podcast-player-button',
-    'podcast-player-button--play',
-    'js-player-play-button',
-    { 'is-paused': isPaused },
-    { 'is-playing': isPlaying },
-    { 'is-loading': isLoading },
-  );
   return (
     <Container>
-      <PlayPostButton canPlay={prevPost} title="Listen to the previous post">
+      <PlayPostButton
+        canPlay={prevPost}
+        title="Listen to the previous post"
+        onClick={(e) => {
+          e.preventDefault();
+          prevPost && onLoadAudio(prevPost, prevPost);
+        }}>
         <span>{prevPost && `#${prevPost}`}</span>
         <img src={PodcastArrow} alt="Previous post" />
       </PlayPostButton>
@@ -134,10 +133,15 @@ const PlayerButtons = (
         isPaused={isPaused}
         isLoading={isLoading}
         style={{padding: 0}}
-        onClick={onPlayPause.bind(15)}
+        onClick={onPlayPause}
       />
       <ForwardButton title="Seek forward 15 seconds" onClick={onIncrement} />
-      <PlayPostButton canPlay={nextPost} title="Listen to the next post">
+      <PlayPostButton
+        canPlay={nextPost} title="Listen to the next post"
+        onClick={(e) => {
+          e.preventDefault();
+          nextPost && onLoadAudio(nextPost, nextPost);
+        }}>
         <img
           src={PodcastArrow}
           alt="Next post"
@@ -152,8 +156,11 @@ const PlayerButtons = (
 PlayerButtons.propTypes = {
   isPaused: PropTypes.bool.isRequired,
   isPlaying: PropTypes.bool.isRequired,
+  prevPost: PropTypes.string,
+  nextPost: PropTypes.string,
   isLoading: PropTypes.bool.isRequired,
   onPlayPause: PropTypes.func.isRequired,
+  onLoadAudio: PropTypes.func.isRequired,
 };
 
 export default PlayerButtons;
