@@ -148,29 +148,30 @@ export default class DockPlayer extends Component {
         <div id="player">
           <figure className={playerClasses}>
               <PlayerNav
-              togglePlayer={this.togglePlayer}
-              close={this.close}
+                isHidden={this.state.isHidden}
+                togglePlayer={this.togglePlayer}
+                close={this.close}
               />
               <PlayerArt source={this.props.artUrl} />
               <PlayerDetails
-              title={this.props.playerTitle}
-              audioTitle={this.props.audioTitle} />
+                title={this.props.playerTitle}
+                audioTitle={this.props.audioTitle} />
               <PlayerButtons
-              isPaused={this.state.isPaused}
-              isPlaying={this.state.isPlaying}
-              isLoading={this.state.isLoading}
-              onPlayPause={this.handlePlayPause}
-              onIncrement={this.handleIncrement}
-              onDecrement={this.handleDecrement}
+                isPaused={this.state.isPaused}
+                isPlaying={this.state.isPlaying}
+                isLoading={this.state.isLoading}
+                onPlayPause={this.handlePlayPause}
+                onIncrement={this.handleIncrement}
+                onDecrement={this.handleDecrement}
               />
               <PlayerSlider
-              trackDuration={this.state.trackDuration}
-              currentTime={this.state.displayTime}
-              title={this.props.playerTitle}
-              audioTitle={this.props.audioTitle}
-              onScrubberChange={this.handleScrubberChange}
-              onMouseDown={this.handleScrubberMouseDown}
-              onMouseUp={this.handleScrubberMouseUp}
+                trackDuration={this.state.trackDuration}
+                currentTime={this.state.displayTime}
+                title={this.props.playerTitle}
+                audioTitle={this.props.audioTitle}
+                onScrubberChange={this.handleScrubberChange}
+                onMouseDown={this.handleScrubberMouseDown}
+                onMouseUp={this.handleScrubberMouseUp}
               />
           </figure>
         </div>

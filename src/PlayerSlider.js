@@ -9,8 +9,6 @@ const rangeHandleColorHover = `${white}`;
 const rangeHandleSize = '18px';
 const rangeTrackColor = `${black}`;
 const rangeTrackHeight = '2px';
-const rangeLabelColor = `${halfWhite}`;
-const rangeLabelWidth = '60px';
 
 const sliderThumb = `
     -webkit-appearance: none;

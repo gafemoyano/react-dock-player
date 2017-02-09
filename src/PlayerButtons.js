@@ -1,6 +1,22 @@
 import React, {PropTypes} from 'react';
 import cx from 'classnames'
 import PodcastArrow from './assets/icons/podcast-arrow.svg';
+import styled from 'styled-components';
+import { halfBlack, halfWhite } from './style-variables';
+
+const Button = styled.button`
+  background: ${halfBlack} center no-repeat;
+  border-radius: 200px;
+  color: ${halfWhite};
+  padding: 0;
+  height: 3.85rem;
+  width: 3.85rem;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+`;
+
 
 const PlayerButtons = ({
   isPaused,
