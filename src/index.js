@@ -203,8 +203,8 @@ export default class DockPlayer extends Component {
     this.state.isHidden ? this.show() : this.hide();
   };
   render() {
-    const nextPost = this.hasNext() && this.state.nextAudioLabel;
-    const prevPost = this.hasPrev() && this.state.prevAudioLabel;
+    const nextPost = this.hasNext() && this.props.nextAudioLabel;
+    const prevPost = this.hasPrev() && this.props.prevAudioLabel;
     return (
       <PlayerContainer>
         <AudioWrapper
