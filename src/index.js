@@ -100,7 +100,7 @@ export default class DockPlayer extends Component {
   state = {
     audioLoaded: false,
     isActive: true,
-    isHidden: true,
+    isHidden: false,
     isPaused: true,
     isPlaying: false,
     isMuted: false,
