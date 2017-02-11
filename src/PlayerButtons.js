@@ -1,8 +1,7 @@
-import React, { PropTypes } from 'react';
-import cx from 'classnames';
+import React, { PropTypes, Component } from 'react';
 import PodcastArrow from './assets/icons/podcast-arrow.svg';
 import styled, { css } from 'styled-components';
-import { white, halfBlack, halfWhite, tablet } from './style-variables';
+import { white, tablet } from './style-variables';
 import ForwardIcon from './assets/icons/next-15.svg';
 import BackIcon from './assets/icons/prev-15.svg';
 import PlayIcon from './assets/icons/play.svg';
@@ -102,65 +101,81 @@ const PlayButton = styled(PlayPostButton)`
   `}
 `;
 
-const PlayerButtons = (
-  {
-    isPaused,
-    isPlaying,
-    isLoading,
-    prevPost,
-    nextPost,
-    onPlayPause,
-    onIncrement,
-    onDecrement,
-    onLoadAudio,
-  },
-) => {
-  return (
-    <Container>
-      <PlayPostButton
-        canPlay={prevPost}
-        title="Listen to the previous post"
-        onClick={(e) => {
-          e.preventDefault();
-          prevPost && onLoadAudio(prevPost, prevPost);
-        }}>
-        <span>{prevPost && `#${prevPost}`}</span>
-        <img src={PodcastArrow} alt="Previous post" />
-      </PlayPostButton>
-      <BackButton title="Seek back 15 seconds" onClick={onDecrement.bind(15)} />
-      <PlayButton
-        isPlaying={isPlaying}
-        isPaused={isPaused}
-        isLoading={isLoading}
-        style={{padding: 0}}
-        onClick={onPlayPause}
-      />
-      <ForwardButton title="Seek forward 15 seconds" onClick={onIncrement} />
-      <PlayPostButton
-        canPlay={nextPost} title="Listen to the next post"
-        onClick={(e) => {
-          e.preventDefault();
-          nextPost && onLoadAudio(nextPost, nextPost);
-        }}>
-        <img
-          src={PodcastArrow}
-          alt="Next post"
-          style={{ transform: 'scaleX(-1)' }}
-        />
-        <span>{nextPost && `#${nextPost}`}</span>
-      </PlayPostButton>
-    </Container>
-  );
-};
+class PlayerButtons extends Component {
+  static propTypes = {
+    isPaused: PropTypes.bool.isRequired,
+    isPlaying: PropTypes.bool.isRequired,
+    prevPostLabel: PropTypes.string,
+    prevPostId: PropTypes.string,
+    nextPostLabel: PropTypes.string,
+    nextPostId: PropTypes.string,
+    isLoading: PropTypes.bool.isRequired,
+    onPlayPause: PropTypes.func.isRequired,
+    onLoadAudio: PropTypes.func.isRequired,
+  };
+  handleNextClick = event => {
+    event.preventDefault();
 
-PlayerButtons.propTypes = {
-  isPaused: PropTypes.bool.isRequired,
-  isPlaying: PropTypes.bool.isRequired,
-  prevPost: PropTypes.string,
-  nextPost: PropTypes.string,
-  isLoading: PropTypes.bool.isRequired,
-  onPlayPause: PropTypes.func.isRequired,
-  onLoadAudio: PropTypes.func.isRequired,
-};
+    const prevId = this.props.prevPostId;
+    prevId && this.props.onLoadAudio(prevId);
+  };
+
+  handlePrevClick = event => {
+    event.preventDefault();
+
+    const nextPostId = this.props.nextPostId;
+    nextPostId && this.props.onLoadAudio(nextPostId);
+  };
+
+  render() {
+    const {
+      isPaused,
+      isPlaying,
+      isLoading,
+      prevPostLabel,
+      nextPostLabel,
+      onPlayPause,
+      onIncrement,
+      onDecrement,
+    } = this.props;
+
+    return (
+      <Container>
+        <PlayPostButton
+          canPlay={prevPostLabel}
+          title="Listen to the previous post"
+          onClick={this.handlePrevClick}
+        >
+          <span>{prevPostLabel && `#${prevPostLabel}`}</span>
+          <img src={PodcastArrow} alt="Previous post" />
+        </PlayPostButton>
+        <BackButton
+          title="Seek back 15 seconds"
+          onClick={onDecrement.bind(15)}
+        />
+        <PlayButton
+          isPlaying={isPlaying}
+          isPaused={isPaused}
+          isLoading={isLoading}
+          style={{ padding: 0 }}
+          onClick={onPlayPause}
+        />
+        <ForwardButton title="Seek forward 15 seconds" onClick={onIncrement} />
+        <PlayPostButton
+          canPlay={nextPostLabel}
+          title="Listen to the next post"
+          onClick={this.handleNextClick}
+        >
+          <img
+            src={PodcastArrow}
+            alt="Next post"
+            style={{ transform: 'scaleX(-1)' }}
+          />
+          <span>{nextPostLabel && `#${nextPostLabel}`}</span>
+        </PlayPostButton>
+      </Container>
+    );
+  }
+}
 
 export default PlayerButtons;

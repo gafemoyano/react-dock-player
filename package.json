@@ -1,6 +1,6 @@
 {
   "name": "react-dock-player",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A react audio player ported from The Changelog's website. Best suited for blogs, can probably be used for anything.",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -11,7 +11,7 @@
     "umd"
   ],
   "scripts": {
-    "build": "nwb build-react-component",
+    "build": "nwb build-react-component --copy-files",
     "clean": "nwb clean-module && npm clean-demo",
     "start": "nwb serve-react-demo",
     "test": "nwb test-react",
@@ -19,7 +19,6 @@
     "test:watch": "nwb test-react --server"
   },
   "dependencies": {
-    "classnames": "^2.2.5",
     "styled-components": "^1.4.3"
   },
   "peerDependencies": {

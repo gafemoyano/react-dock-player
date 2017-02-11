@@ -1,5 +1,3 @@
-// import './assets/sass/app.sass';
-import cx from 'classnames';
 import styled, { css } from 'styled-components';
 import React, { Component, PropTypes } from 'react';
 import AudioWrapper from './AudioWrapper';
@@ -88,21 +86,21 @@ const PlayerArt = styled.img`
 
 export default class DockPlayer extends Component {
   static propTypes = {
-    audioTitle: PropTypes.string,
-    playerTitle: PropTypes.string,
     artUrl: PropTypes.string,
+    audioTitle: PropTypes.string,
     audioUrl: PropTypes.string,
-    nextAudioUrl: PropTypes.string,
-    nextAudioTitle: PropTypes.string,
-    prevAudioUrl: PropTypes.string,
-    prevAudioTitle: PropTypes.string,
     loadAudio: PropTypes.func.isRequired,
+    nextAudioId: PropTypes.string,
+    nextAudioLabel: PropTypes.string,
+    playerTitle: PropTypes.string,
+    prevAudioId: PropTypes.string,
+    prevAudioLabel: PropTypes.string,
   };
 
   state = {
     audioLoaded: false,
     isActive: true,
-    isHidden: false,
+    isHidden: true,
     isPaused: true,
     isPlaying: false,
     isMuted: false,
@@ -119,10 +117,10 @@ export default class DockPlayer extends Component {
     return this.audio.canPlay();
   }
   hasNext() {
-    return this.props.nextAudioTitle && this.props.nextAudioUrl;
+    return this.props.nextAudioId && this.props.nextAudioLabel;
   }
   hasPrev() {
-    return this.props.prevAudioTitle && this.props.prevAudioUrl;
+    return this.props.prevAudioId && this.props.prevAudioLabel;
   }
   play = () => {
     this.setState({ isPaused: false, isPlaying: true });
